@@ -14,7 +14,7 @@ CHIP DMux {
     PARTS:
     // Demux using Nand only as
     // Not(Not(sel) Nand in) = a
-    // Not(sel and in) = b
+    // Not(sel Nand in) = b
     Nand(a= sel, b= sel, out= x);
     Nand(a= in, b= x, out= resN);
     Nand(a= resN, b= resN, out= a);
