@@ -1,0 +1,23 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/DMux4Way.hdl
+/**
+ * 4-way demultiplexor:
+ * [a, b, c, d] = [in, 0, 0, 0] if sel = 00
+ *                [0, in, 0, 0] if sel = 01
+ *                [0, 0, in, 0] if sel = 10
+ *                [0, 0, 0, in] if sel = 11
+ */
+CHIP DMux4Way {
+    IN in, sel[2];
+    OUT a, b, c, d;
+
+    PARTS:
+    // Since we know Dmux is working on the opposite of Mux
+    // We can use the same concept of Mux4To16 just in reverse order
+    // Bingo its worked
+    DMux(in= in, sel= sel[1], a= ab, b= cd);
+    DMux(in= ab, sel= sel[0], a= a, b= b);
+    DMux(in= cd, sel= sel[0], a= c, b= d);
+}
